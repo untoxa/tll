@@ -47,7 +47,11 @@
 #include "channel/yaml.h"
 #include "channel/zero.h"
 
+#include "channel/genprefix.h"
+
 using namespace tll;
+
+TLL_DEFINE_IMPL(tll::channel::GenPrefix);
 
 TLL_DEFINE_IMPL(ChDirect);
 TLL_DEFINE_IMPL(ChLoader);
@@ -107,6 +111,7 @@ struct tll_channel_context_t : public tll::util::refbase_t<tll_channel_context_t
 		reg(&ChZero::impl);
 
 		reg(&tll::channel::SeqCheck::impl);
+		reg(&tll::channel::GenPrefix::impl);
 
 		auto cfg = tll::Channel::Url::parse("udp://;udp.multicast=yes");
 		if (cfg) alias_reg("mudp", *cfg);
